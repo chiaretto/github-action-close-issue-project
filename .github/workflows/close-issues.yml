@@ -1,0 +1,31 @@
+name: Github Close Issues From Column Done
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      debug:
+        type: choice
+        options:
+          - true
+          - false
+
+jobs:
+  sync-project:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+      repository-projects: write
+    steps:
+      - uses: actions/checkout@v3.5.3
+
+      - name: Close Issues from Column Done
+        uses: ./
+        with:
+          github-token: "${{ secrets.ACCESS_TOKEN }}"
+          repo: "${{ github.repository }}"
+          project: "Project Eng"
+          column: "Ready For Production"
+          debug: "${{ github.event.inputs.debug }}"

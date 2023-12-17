@@ -1,0 +1,22 @@
+name: "Github Close Issue Project"
+description: "Github Close Issue Project"
+author: "Fabiano Chiaretto Fernandes"
+branding:
+  icon: "edit"
+  color: "purple"
+runs:
+  using: "node16"
+  main: "dist/index.js"
+inputs:
+  github-token:
+    description: "The GITHUB_TOKEN secret"
+    required: true
+  repo:
+    required: true
+  project:
+    required: true
+  columns:
+    required: true
+  debug:
+    description: "Debug GraphQL"
+    required: false
